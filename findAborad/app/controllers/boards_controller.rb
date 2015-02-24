@@ -8,7 +8,7 @@ class BoardsController < ApplicationController
 	    @hash   = Gmaps4rails.build_markers(@boards) do |board, marker|
 	    marker.lat board.latitude
 	    marker.lng board.longitude
-	    marker.infowindow board.description + " " +board.title + " " + "<br>" + "Price: "  + "$" + " "+ board.price.to_s
+	    marker.infowindow "Type of Board: " + board.title + " " + "<br>" + "Price: "  + "$" + " "+ board.price.to_s + view_context.link_to('More Info.', board_path(board.id))
 
 		end
 	end
@@ -77,6 +77,7 @@ class BoardsController < ApplicationController
 	      :description,
 	      :address,
 	      :price, 
+	      :image,
 	      :user_id
 	    )
 		end
